@@ -8,7 +8,7 @@ First build and bundle the client application:
 ```sh
 cd client
 gleam build
-deno bundle -o ../server/static/client.js entry.js
+deno bundle -o ../server/public/client.js entry.js
 cd ..
 ```
 

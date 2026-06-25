@@ -1,3 +1,3 @@
 #!/bin/sh
 
-deno bundle -o ../server/static/client.js entry.js
+deno bundle -o ../server/public/client.js entry.js
