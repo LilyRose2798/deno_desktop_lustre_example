@@ -1,0 +1,13 @@
+name = "client"
+version = "1.0.0"
+target = "javascript"
+
+[javascript]
+runtime = "deno"
+
+[dependencies]
+gleam_stdlib = ">= 1.0.0 and < 2.0.0"
+lustre = ">= 5.7.0 and < 6.0.0"
+shared = { path = "../shared" }
+
+[dev_dependencies]
