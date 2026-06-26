@@ -21,7 +21,7 @@ gleam build
 deno desktop --no-check --allow-all --include public --hmr serve.js # optionally add --backend cef
 ```
 
-When building an executable to distribute you probably also want to bundle the server application:
+When building an executable to distribute you may also want to bundle the server application:
 
 ```sh
 cd server
