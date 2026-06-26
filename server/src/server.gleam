@@ -64,16 +64,26 @@ fn index_response() -> Promise(Response) {
   |> smol.send_html
 }
 
+@external(javascript, "./server.ffi.mjs", "getPublicDir")
+fn get_public_dir() -> String
+
 fn public_file_response(path: String) -> Promise(Response) {
   case filepath.expand(path) {
     Ok("/public/" <> path) ->
-      smol.send_file(filepath.join("public", path), 0, option.None, fn(error) {
-        case error {
-          smol.NoEntry ->
-            smol.send_string("File not found") |> smol.with_status(404)
-          _ -> smol.send_string("Unable to read file") |> smol.with_status(500)
-        }
-      })
+      smol.send_file(
+        filepath.join(get_public_dir(), path),
+        0,
+        option.None,
+        fn(error) {
+          case error {
+            smol.NoEntry ->
+              smol.send_string("File not found")
+              |> smol.with_status(404)
+            _ ->
+              smol.send_string("Unable to read file") |> smol.with_status(500)
+          }
+        },
+      )
     Ok(_) -> smol.send_string("Invalid file path") |> smol.with_status(400)
     Error(_) ->
       smol.send_string("File path traversed outside the public directory")

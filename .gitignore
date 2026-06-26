@@ -3,5 +3,7 @@
 client/build
 shared/build
 server/build
+server/dist
 server/public/client.js
+server/server-bundle.js
 erl_crash.dump
